@@ -30,7 +30,18 @@ try{ // essai
     die($e->getMessage());
 }
 
+// Vérification de la variable get requestGET pour effectuer la requête SQL
+if(isset($_GET['requestGET'])){
+    $sql ="SELECT * FROM `pages` WHERE `id` = 2;";
+}else{
+    // requête $sql pour la page d'accueil
+    $sql = "SELECT * FROM `pages` WHERE `id` = 1;";
+}
 
+// Exécution de la reqête
+$recup = $connectDB->query($sql);
+// transformation du résultat en format PHP tableau associatif
+$response = $recup->fetch(PDO::FETCH_ASSOC);
 
 // on appel la vue
 ?>
@@ -39,7 +50,7 @@ try{ // essai
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title><?=$response['titlep']?></title>
 </head>
 <body>
     <nav>
@@ -48,10 +59,10 @@ try{ // essai
         <a href="./?requestGET=sql">SQL</a>
         <a href="./?requestGET=javascript">Javascript</a>
     </nav>
-    <h1></h1>
-    <p></p>
+    <h1><?=$response['titlep']?></h1>
+    <p><?=nl2br($response['textp'])?></p>
     <?php
-    var_dump($_GET,$connectDB);
+    var_dump($_GET,$connectDB,$response);
     ?>
 </body>
 </html>
