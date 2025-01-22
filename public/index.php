@@ -5,6 +5,32 @@
 // des variables se trouvant dans l'URL
 // var_dump($_GET);
 
+// constantes de la base de donnée
+const DB_MYSQL_TYPE = "mysql";
+const DB_MYSQL_HOST = "localhost"; // hôte de connexion (url ou adresse ip)
+const DB_MYSQL_NAME = "db_mini_site"; // nom de la DB
+const DB_MYSQL_LOGIN = "root"; // login
+const DB_MYSQL_PWD = ""; // mot de passe
+const DB_MYSQL_PORT = 3306;
+const DB_MYSQL_ENCODE = "utf8";
+
+// echo DB_MYSQL_ENCODE;
+
+
+// Connexion à la base de donnée
+try{ // essai
+
+    // connexion via PDO
+    $connectDB = new PDO(DB_MYSQL_TYPE.":host=".DB_MYSQL_HOST.";dbname=".DB_MYSQL_NAME.";port=".DB_MYSQL_PORT.";charset=".DB_MYSQL_ENCODE, 
+    DB_MYSQL_LOGIN, 
+    DB_MYSQL_PWD
+);
+}catch(Exception $e){ // erreur
+    // arrêt du script et affichage de du message d'erreur
+    die($e->getMessage());
+}
+
+
 
 // on appel la vue
 ?>
@@ -25,7 +51,7 @@
     <h1></h1>
     <p></p>
     <?php
-    var_dump($_GET);
+    var_dump($_GET,$connectDB);
     ?>
 </body>
 </html>
