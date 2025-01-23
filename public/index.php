@@ -32,11 +32,30 @@ try{ // essai
 
 // Vérification de la variable get requestGET pour effectuer la requête SQL
 if(isset($_GET['requestGET'])){
-    $sql ="SELECT * FROM `pages` WHERE `id` = 2;";
+
+    // switch case pour déterminer l'id de la page (équivalent à un if elseif else)
+    switch($_GET['requestGET']){
+        case "php":
+            $id = 2;
+            break;
+        case "sql":
+            $id = 3;
+            break;
+        case "javascript":
+            $id = 4;
+            break;
+        default:
+            $id = 1;
+            break;
+    }
+
 }else{
-    // requête $sql pour la page d'accueil
-    $sql = "SELECT * FROM `pages` WHERE `id` = 1;";
+    // id de la page d'accueil
+    $id = 1;
 }
+
+// requête $sql
+$sql = "SELECT * FROM `pages` WHERE `id` = $id;";
 
 // Exécution de la reqête
 $recup = $connectDB->query($sql);
