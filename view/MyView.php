@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $datas['titre']?> | <?=$titrepage?></title>
-    <!-- le css js, images doivent être -->
+    <!-- le css js, images doivent être dans le dossier public ! -->
     <link rel="stylesheet" href="css/my.css">
 </head>
 <body>
